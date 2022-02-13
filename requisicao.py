@@ -1,12 +1,11 @@
 import requests
-import shutil
-import json
 import datetime as dt
 
 
 class Repositorio:
     def __init__(self, usuario):
         self.usuario = usuario
+        self.colecao = []
 
     def requisita(self):
         resposta = requests.get(f'https://api.github.com/users/{self.usuario}/repos')
@@ -27,22 +26,34 @@ class Repositorio:
                     language = conteudo[i]['language']
                     disabled = conteudo[i]['disabled']
                     archived = conteudo[i]['archived']
+                    description = conteudo[i]['description']
 
-                    print("Nome: ", name)
-                    print("Link do GitHub: ", link_github)
-                    print("Link do Repositório: ", link_repos)
-                    print("Data: ", data, type(data))
-                    print("Data Formatada: ", data_f, type(data_f))
-                    # print("Último Commit: ", last_com, type(last_com))
-                    print("Language: ", language)
-                    print("Disabled: ", disabled)
-                    print("Archived: ", archived)
-                    print()
+                    # print("Nome: ", name)
+                    # print("Descrição: ", description)
+                    # print("Link do GitHub: ", link_github)
+                    # print("Link do Repositório: ", link_repos)
+                    # print("Data: ", data, type(data))
+                    # print("Data Formatada: ", data_f, type(data_f))
+                    # # print("Último Commit: ", last_com, type(last_com))
+                    # print("Language: ", language)
+                    # print("Disabled: ", disabled)
+                    # print("Archived: ", archived)
+                    # print()
+
+                    dicionario = {"nome": name, "descricao": description, "github": link_github,
+                                  "link_repos": link_repos, "data": data, "data_f": data_f,
+                                  "language": language, "disabled": disabled, "archived": archived}
+
+                    self.colecao.append(dicionario)
+
             else:
                 print(conteudo)
 
         else:
             print(resposta.status_code)
+
+        print(self.colecao)
+        return self.colecao
 
 
 repositorios = Repositorio("ViniciusFebasse")
