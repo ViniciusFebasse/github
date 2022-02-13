@@ -16,10 +16,14 @@ class Repositorio:
 
             if type(conteudo) is not int:
                 for i in range(len(conteudo)):
+                    print("Name: ", conteudo[i]['name'])
+                    print("Link do GitHub: ", conteudo[i]['owner']['html_url'])
+                    print("Link do Repositório: ", conteudo[i]['svn_url'])
+                    print("Último Commit: ", conteudo[i]['pushed_at'])
+                    print("Language: ", conteudo[i]['language'])
+                    print("Disabled: ", conteudo[i]['disabled'])
+                    print("Archived: ", conteudo[i]['archived'])
                     print()
-                    print(conteudo[i])
-                    print()
-                    print(conteudo[i]['name'])
             else:
                 print(conteudo)
 
