@@ -1,7 +1,7 @@
 import requests
 import shutil
 import json
-import datetime
+import datetime as dt
 
 
 class Repositorio:
@@ -16,13 +16,27 @@ class Repositorio:
 
             if type(conteudo) is not int:
                 for i in range(len(conteudo)):
-                    print("Name: ", conteudo[i]['name'])
-                    print("Link do GitHub: ", conteudo[i]['owner']['html_url'])
-                    print("Link do Repositório: ", conteudo[i]['svn_url'])
-                    print("Último Commit: ", conteudo[i]['pushed_at'])
-                    print("Language: ", conteudo[i]['language'])
-                    print("Disabled: ", conteudo[i]['disabled'])
-                    print("Archived: ", conteudo[i]['archived'])
+                    name = conteudo[i]['name']
+                    link_github = conteudo[i]['owner']['html_url']
+                    link_repos = conteudo[i]['svn_url']
+                    last_com = conteudo[i]['pushed_at'][:10]
+
+                    data = dt.datetime.strptime(last_com, "%Y-%m-%d")
+                    data_f = dt.datetime.strftime(data, "%d/%m/%Y")
+
+                    language = conteudo[i]['language']
+                    disabled = conteudo[i]['disabled']
+                    archived = conteudo[i]['archived']
+
+                    print("Nome: ", name)
+                    print("Link do GitHub: ", link_github)
+                    print("Link do Repositório: ", link_repos)
+                    print("Data: ", data, type(data))
+                    print("Data Formatada: ", data_f, type(data_f))
+                    # print("Último Commit: ", last_com, type(last_com))
+                    print("Language: ", language)
+                    print("Disabled: ", disabled)
+                    print("Archived: ", archived)
                     print()
             else:
                 print(conteudo)
