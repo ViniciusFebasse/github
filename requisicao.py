@@ -16,6 +16,9 @@ class Repositorio:
 
             if type(conteudo) is not int:
                 for i in range(len(conteudo)):
+                    print()
+                    print(conteudo[i])
+                    print()
                     print(conteudo[i]['name'])
             else:
                 print(conteudo)
