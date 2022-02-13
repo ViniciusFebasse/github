@@ -1,5 +1,9 @@
 from django.shortcuts import render
+from requisicao import Repositorio
 
 
 def index(request):
-    return render(request, 'dados/index.html')
+    repositorios = Repositorio("ViniciusFebasse")
+    colecoes = repositorios.requisita()
+
+    return render(request, 'dados/index.html', {'colecoes': colecoes})
